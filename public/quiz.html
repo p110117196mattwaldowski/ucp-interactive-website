@@ -1,0 +1,327 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+   <body class="bg-gray-400 font-sans leading-normal tracking-normal">
+
+      <nav class="flex items-center justify-between flex-wrap bg-blue-900 p-6 fixed w-full z-10 top-0">
+          <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <header role="banner" class="px-0 mx-0 container mx-auto pt-6 mb-6 flex flex-col justify-center">
+              <div class="flex flex-wrap lg:px-4">
+               <div class="my-2 pr-2 w-5/12 lg:w-3/12 overflow-hidden">
+                <div class="ml-4 lg:ml-0">
+                 <a href="index.html">
+                  <img class="md:pl-6" src="UniversityCentrePeterboroughLogo.png" />
+                 </a>
+                </div>
+               </div>
+    
+          <div class="block lg:hidden">
+              <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+                  <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+          </div>
+    
+          <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+              <ul class="list-reset lg:flex justify-end flex-1 items-center">
+                  <li class="mr-3">
+                      <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="location.html">location</a>
+                  </li>
+                  <li class="mr-3">
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="search.html">courses</a>
+                </li>
+                  <li class="mr-3">
+                      <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="fees.html">fees</a>
+                  </li>
+                  <li class="mr-3">
+                      <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="about.html">about</a>
+                  </li>
+                  <li class="mr-3">
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="quiz.html">quiz</a>
+                </li>
+                <li class="mr-3">
+                  <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="newspaper.html">newsletter</a>
+              </li>
+              </ul>
+          </div>
+      </nav>
+    
+      <!--Container-->
+      <div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
+    
+      </div>
+    
+      <script>
+          //Javascript to toggle the menu
+          document.getElementById('nav-toggle').onclick = function(){
+              document.getElementById("nav-content").classList.toggle("hidden");
+          }
+      </script>
+      </br>
+   </br>
+   </br>
+   </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<!--container-->
+<section class="container ">
+
+  <!--questionBox-->
+  <div class="questionBox" id="app">
+
+    <!-- transition -->
+    <transition :duration="{ enter: 500, leave: 300 }" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut" mode="out-in">
+
+      <!--qusetionContainer-->
+      <div class="questionContainer" v-if="questionIndex<quiz.questions.length" v-bind:key="questionIndex">
+
+        <header>
+          <h1 class="title is-6">UCPQUIZ</h1>
+          <!--progress-->
+          <div class="progressContainer">
+            <progress class="progress is-info is-small" :value="(questionIndex/quiz.questions.length)*100" max="100">{{(questionIndex/quiz.questions.length)*100}}%</progress>
+            <p>{{(questionIndex/quiz.questions.length)*100}}% complete</p>
+          </div>
+          <!--/progress-->
+        </header>
+
+        <!-- questionTitle -->
+        <h2 class="titleContainer title">{{ quiz.questions[questionIndex].text }}</h2>
+
+        <!-- quizOptions -->
+        <div class="optionContainer">
+          <div class="option" v-for="(response, index) in quiz.questions[questionIndex].responses" @click="selectOption(index)" :class="{ 'is-selected': userResponses[questionIndex] == index}" :key="index">
+            {{ index | charIndex }}. {{ response.text }}
+          </div>
+        </div>
+
+        <!--quizFooter: navigation and progress-->
+        <footer class="questionFooter">
+
+          <!--pagination-->
+          <nav class="pagination" role="navigation" aria-label="pagination">
+
+            <!-- back button -->
+            <a class="button" v-on:click="prev();" :disabled="questionIndex < 1">
+                    Back
+                  </a>
+
+            <!-- next button -->
+            <a class="button" :class="(userResponses[questionIndex]==null)?'':'is-active'" v-on:click="next();" :disabled="questionIndex>=quiz.questions.length">
+                    {{ (userResponses[questionIndex]==null)?'Skip':'Next' }}
+                  </a>
+
+          </nav>
+          <!--/pagination-->
+
+        </footer>
+        <!--/quizFooter-->
+
+      </div>
+      <!--/questionContainer-->
+
+      <!--quizCompletedResult-->
+      <div v-if="questionIndex >= quiz.questions.length" v-bind:key="questionIndex" class="quizCompleted has-text-centered">
+
+        <!-- quizCompletedIcon: Achievement Icon -->
+        <span class="icon">
+                <i class="fa" :class="score()>3?'fa-check-circle-o is-active':'fa-times-circle'"></i>
+              </span>
+
+        <!--resultTitleBlock-->
+        <h2 class="title">
+          You should {{ (score()>7?'definetly study at ':(score()<4?'think again about studying at ':' try')) }} uni!
+        </h2>
+        <p class="subtitle">
+          Total score: {{ score() }} / {{ quiz.questions.length }}
+        </p>
+          <br>
+          <a class="button" @click="restart()">restart <i class="fa fa-refresh"></i></a>
+        <!--/resultTitleBlock-->
+
+      </div>
+      <!--/quizCompetedResult-->
+
+    </transition>
+
+  </div>
+  <!--/questionBox-->
+
+</section>
+<!--/container-->
+  </body>
+</html>
+  <script>
+  var quiz = {
+      user: "Dave",
+      questions: [
+         {
+            text: "how many hours do you study in a week?",
+            responses: [
+               { text: "1-5" },
+               { text: "6-10", correct: true },
+               { text: "11-20" },
+               { text: "None of the above" }
+            ]
+         },
+         {
+            text: "whats the highest level of school you have completed",
+            responses: [
+               { text: "college", correct: true },
+               { text: "sixth form", correct: true },
+               { text: "secondary school" },
+               { text: "none of the above" }
+            ]
+         },
+         {
+            text: "what is the main reason for choosing further studies?",
+            responses: [
+               { text: "good experience " },
+               { text: "to widen my skillset", correct: true },
+               { text: "the moeny" },
+               { text: "none of the above" }
+            ]
+         },
+         {
+            text: "what would you do out of these situations if you had an exam",
+            responses: [
+               { text: "study to get a good grade", correct: true },
+               { text: "dont study and hope for the best" },
+               { text: "only study a little" },
+               { text: "None of the above" }
+            ]
+         },
+         {
+            text: "what have you picked UCP",
+            responses: [
+               { text: "location" },
+               {text: "good hours" },                  
+               { text: "location and good hours", correct: true },
+               { text: "none of the above" }
+            ]
+         },
+         {
+            text:
+               "are you interested in accomadation?",
+            responses: [
+               { text: "maybe" },
+               { text: "no" },
+               { text: "yes", correct: true },
+               { text: "None of the above" }
+            ]
+         },
+         {
+            text: "are you interested in societies ",
+            responses: [
+               { text: " yes", correct: true },
+               { text: "no " },
+               { text: "maybe" },                
+               { text: "depends on the societies at the university" }
+            ]
+         },
+         {
+            text: "what course do you find most interesting ",
+            responses: [
+               { text: "FDA DIGITAL ARTS", correct: true },
+               { text: "BSC (HONS) ACCOUNTING AND FINANCE", correct: true },
+               { text: "BA (HONS) CRIMINOLOGY ", correct: true },
+               { text: "BA (HONS) JOURNALISM" }
+            ]
+         },
+         {
+            text:
+               "What would you gain from your degree?",
+            responses: [
+               {text: "valuable life skills", correct: true },              
+               { text: "grades that will help in the future ", correct: true },
+               { text: "socialsing", correct: true },
+               { text: "none of the above" }
+            ]
+         },
+         {
+            text: "what do you do in your free time?",
+            responses: [
+               { text: "enjoy socialising ", correct: true },
+               { text: "i game alot", correct: true },
+               { text: "go and enjoy outdoor activities", correct: true },
+               { text: "None of the above" }
+            ]
+         }
+      ]
+   },
+   userResponseSkelaton = Array(quiz.questions.length).fill(null);
+
+var app = new Vue({
+   el: "#app",
+   data: {
+      quiz: quiz,
+      questionIndex: 0,
+      userResponses: userResponseSkelaton,
+      isActive: false
+   },
+   filters: {
+      charIndex: function(i) {
+         return String.fromCharCode(97 + i);
+      }
+   },
+   methods: {
+     restart: function(){
+        this.questionIndex=0;
+        this.userResponses=Array(this.quiz.questions.length).fill(null);
+     },
+      selectOption: function(index) {
+         Vue.set(this.userResponses, this.questionIndex, index);
+         //console.log(this.userResponses);
+      },
+      next: function() {
+         if (this.questionIndex < this.quiz.questions.length)
+            this.questionIndex++;
+      },
+
+      prev: function() {
+         if (this.quiz.questions.length > 0) this.questionIndex--;
+      },
+      // Return "true" count in userResponses
+      score: function() {
+         var score = 0;
+         for (let i = 0; i < this.userResponses.length; i++) {
+            if (
+               typeof this.quiz.questions[i].responses[
+                  this.userResponses[i]
+               ] !== "undefined" &&
+               this.quiz.questions[i].responses[this.userResponses[i]].correct
+            ) {
+               score = score + 1;
+            }
+         }
+         return score;
+
+         //return this.userResponses.filter(function(val) { return val }).length;
+      }
+   }
+});
+  </script>
+  
