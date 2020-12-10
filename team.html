@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <body class="bg-gray-400 font-sans leading-normal tracking-normal">
+
+    <nav class="flex items-center justify-between flex-wrap bg-blue-900 p-6 fixed w-full z-10 top-0">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <header role="banner" class="px-0 mx-0 container mx-auto pt-6 mb-6 flex flex-col justify-center">
+            <div class="flex flex-wrap lg:px-4">
+             <div class="my-2 pr-2 w-5/12 lg:w-3/12 overflow-hidden">
+              <div class="ml-4 lg:ml-0">
+               <a href="index.html">
+                <img class="md:pl-6" src="UniversityCentrePeterboroughLogo.png" />
+               </a>
+              </div>
+             </div>
+  
+        <div class="block lg:hidden">
+            <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            </button>
+        </div>
+  
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+            <ul class="list-reset lg:flex justify-end flex-1 items-center">
+                <li class="mr-3">
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="location.html">location</a>
+                </li>
+                <li class="mr-3">
+                  <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="search.html">courses</a>
+              </li>
+                <li class="mr-3">
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="fees.html">fees</a>
+                </li>
+                <li class="mr-3">
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="about.html">about</a>
+                </li>
+                <li class="mr-3">
+                  <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="quiz.html">quiz</a>
+              </li>
+              <li class="mr-3">
+                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="newspaper.html">newsletter</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+  
+    <!--Container-->
+    <div class="container shadow-lg mx-auto bg-white mt-24 md:mt-18">
+  
+    </div>
+  
+    <script>
+        //Javascript to toggle the menu
+        document.getElementById('nav-toggle').onclick = function(){
+            document.getElementById("nav-content").classList.toggle("hidden");
+        }
+    </script>
+
+
+
+
+
+
+  <footer class="bg-gray-100">
+    <div class="container mx-auto px-6 pt-10 pb-6">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/4 text-center md:text-left">
+          <h5 class="uppercase mb-6 font-bold">Links</h5>
+          <ul class="mb-4">
+            <li class="mt-2">
+              <a href="courses.html" class="hover:underline text-gray-600 hover:text-orange-500">courses</a>
+            </li>
+            <li class="mt-2">
+              <a href="location.html" class="hover:underline text-gray-600 hover:text-orange-500">location</a>
+            </li>
+            <li class="mt-2">
+              <a href="team.html" class="hover:underline text-gray-600 hover:text-orange-500">Support</a>
+            </li>
+            <li class="mt-2">
+                <a href="about.html" class="hover:underline text-gray-600 hover:text-orange-500">policies</a>
+              </li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/4 text-center md:text-left">
+          <h5 class="uppercase mb-6 font-bold">Terms of service</h5>
+          <ul class="mb-4">
+            <li class="mt-2">
+              <a href="terms&services.html" class="hover:underline text-gray-600 hover:text-orange-500">Terms</a>
+            </li>
+            <li class="mt-2">
+              <a href="terms&services.html" class="hover:underline text-gray-600 hover:text-orange-500">Privacy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/4 text-center md:text-left">
+          <h5 class="uppercase mb-6 font-bold">Connect with us</h5>
+          <ul class="mb-4">
+            <li class="mt-2">
+              <a href="https://www.facebook.com/ucpeterborough/" class="hover:underline text-gray-600 hover:text-orange-500">Facebook</a>
+            </li>
+            <li class="mt-2">
+              <a href="https://www.linkedin.com/school/university-centre-peterborough/" class="hover:underline text-gray-600 hover:text-orange-500">Linkedin</a>
+            </li>
+            <li class="mt-2">
+              <a href="https://twitter.com/ucpeterborough" class="hover:underline text-gray-600 hover:text-orange-500">Twitter</a>
+            </li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/4 text-center md:text-left">
+          <h5 class="uppercase mb-6 font-bold">Latest News</h5>
+          <ul class="mb-4">
+            <li class="mt-2">
+              <a href="courses.html" class="hover:underline text-gray-600 hover:text-orange-500">courses</a>
+            </li>
+            <li class="mt-2">
+              <a href="news.html" class="hover:underline text-gray-600 hover:text-orange-500">newsletters</a>
+            </li>
+            <li class="mt-2">
+              <a href="contact.html" class="hover:underline text-gray-600 hover:text-orange-500">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
